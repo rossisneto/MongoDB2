@@ -76,6 +76,14 @@ app.get('/produto/listar',async (req,res)=>{
     return
 })
 
+app.delete('/produto/excluir',async (req,res)=>{
+    const id =req.body._id
+    let produtos=[]
+    produtos = await Produto.findOneAndDelete({_id:id})
+    res.json(produtos)
+    return
+})
+
 app.get('/usuario/incluir',async (req,res)=>{
     //Incluindo um registro/documento
     novoUsuario = new Usuario({

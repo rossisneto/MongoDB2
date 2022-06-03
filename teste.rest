@@ -10,3 +10,12 @@ Content-Type: application/json
     "estoque": 3,
     "qtd": 0
 }
+
+###
+
+DELETE http://localhost:3000/produto/excluir
+Content-Type: application/json
+
+{
+    "_id":"629a66d3e34f79aa0c6de190"
+}
