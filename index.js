@@ -1,9 +1,11 @@
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 //requisição de modulos
+require('dotenv').config()
+
 const express = require('express')
 const app = express()
 const mongoose = require('mongoose')
-require('dotenv').config()
+
 
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 //Configurando JSON Middleware
@@ -23,6 +25,7 @@ const Produto = require('./model/Product')
 const Usuario = require('./model/User')
 const Pedido = require('./model/Order')
 
+
 mongoose
     .connect(`mongodb+srv://${DB_USER}:${DB_PASS}@cluster0.ocptv.mongodb.net/loja?retryWrites=true&w=majority`
     )    
@@ -33,69 +36,36 @@ mongoose
 
 
 
-
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 //Configurando Rotas
 app.get('/produto/incluir',async (req,res)=>{
     //Incluindo um registro/documento
-    
-    try {
-        /*
-        novoProduto = new Produto({
-            img: './img/product.png',
-            nomeItem: 'camiseta2030-',
-            tamanhoItem: 'M',
-            precoItem: 39.90,
-            estoque: 3,
-            qtd: 0
-        })
-        
-        await novoProduto.save()
-        */
-
-       const novoProduto = {
-            img: './img/product.png',
-            nomeItem: 'camiseta2030-',
-            tamanhoItem: 'M',
-            precoItem: 39.90,
-            estoque: 3,
-            qtd: 0
-       } 
-       
-       await Produto.create(novoProduto)
-       res.status(201).json(novoProduto)
-        
-    } catch (err) {
-        res.status(500).json({msg:'Falha na inclusão:'+err})
-        return
-    }
-
-    
-   
+    //res.render('views/inclusao')
+    res.status(201).json({msg:'acesso na rota get'})
+  
 })
 
 app.post('/produto/incluir',async (req,res)=>{
     //Incluindo um registro/documento
-    const {img, nomeItem,tamanhoItem,precoItem,estoque,qtd} = req.body
+    const {img, codBarra,nomeItem,tamanhoItem,precoItem,estoque,qtd} = req.body
     try {
-       const novoProduto = {
-            img: img,
-            nomeItem: nomeItem,
-            tamanhoItem: tamanhoItem,
-            precoItem: precoItem,
-            estoque: estoque,
-            qtd: qtd
-       } 
+            const novoProduto = {
+                img: img,
+                codBarra: codBarra,
+                nomeItem: nomeItem,
+                tamanhoItem: tamanhoItem,
+                precoItem: precoItem,
+                estoque: estoque,
+                qtd: qtd
+            } 
        
        await Produto.create(novoProduto)
        res.status(201).json(novoProduto)
         
-    } catch (err) {
+    }catch(err){
         res.status(500).json({msg:'Falha na inclusão:'+err})
         return
     }
-
-    
    
 })
 

@@ -1,10 +1,12 @@
-POST http://localhost:3000/produto/incluir HTTP/1.1
-content-type: application/json
+POST http://localhost:3000/produto/incluir 
+Content-Type: application/json
+
 {
-            "img": "./img/product.png",
-            "nomeItem": "camiseta2030-",
-            "tamanhoItem": "M",
-            "precoItem": 39.90,
-            "estoque": 3,
-            "qtd": 0
+    "img": "./img/product.png",
+    "codBarra": "867900567894",
+    "nomeItem": "camiseta2040-",
+    "tamanhoItem": "M",
+    "precoItem": 39.90,
+    "estoque": 3,
+    "qtd": 0
 }

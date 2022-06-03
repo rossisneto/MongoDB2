@@ -4,6 +4,7 @@ const mongoose=require('mongoose')
 
 const Produto = mongoose.model('produtos', {
     img: String,
+    codBarra: String,
     nomeItem: String,
     tamanhoItem: String,
     precoItem: Number,
