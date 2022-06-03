@@ -1,0 +1,10 @@
+POST http://localhost:3000/produto/incluir HTTP/1.1
+content-type: application/json
+{
+            "img": "./img/product.png",
+            "nomeItem": "camiseta2030-",
+            "tamanhoItem": "M",
+            "precoItem": 39.90,
+            "estoque": 3,
+            "qtd": 0
+}
