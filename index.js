@@ -2,10 +2,15 @@
 //requisição de modulos
 require('dotenv').config()
 
+const expressLayouts = require('express-ejs-layouts')
 const express = require('express')
 const app = express()
 const mongoose = require('mongoose')
+const cors = require('cors')
 
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+//Configurando CORS Middleware
+app.use(cors())
 
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 //Configurando JSON Middleware
@@ -15,6 +20,13 @@ app.use(
     }),
 )
 app.use(express.json())
+
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+//Configurando View Engine
+app.use(expressLayouts)
+app.set('view engine', 'ejs')
+app.set('layout','./layouts/layout')
+app.set('views',__dirname+'/views')
 
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 //Configurando/Conectando Mongoose
@@ -40,8 +52,8 @@ mongoose
 //Configurando Rotas
 app.get('/produto/incluir',async (req,res)=>{
     //Incluindo um registro/documento
-    //res.render('views/inclusao')
-    res.status(201).json({msg:'acesso na rota get'})
+    res.render('produto/inclusao')
+    //res.status(200).json({msg:'acesso na rota get'})
   
 })
 
@@ -59,8 +71,12 @@ app.post('/produto/incluir',async (req,res)=>{
                 qtd: qtd
             } 
        
-       await Produto.create(novoProduto)
-       res.status(201).json(novoProduto)
+       await Produto.create(novoProduto).then(result=>{
+           console.log(result.insertedId)})
+       
+       console.log(req.body)
+       console.log('Produto incluido no MongoDB!!!')
+       res.status(201).render('produto/inclusao', novoProduto)
         
     }catch(err){
         res.status(500).json({msg:'Falha na inclusão:'+err})
