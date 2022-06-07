@@ -1,4 +1,4 @@
-POST http://localhost:3000/produto/incluir 
+POST http://localhost:3000/produtos/incluir 
 Content-Type: application/json
 
 {
@@ -13,15 +13,15 @@ Content-Type: application/json
 
 ###
 
-DELETE http://localhost:3000/produto/excluir
+DELETE http://localhost:3000/produtos/excluir
 Content-Type: application/json
 
 {
-    "_id":"629a66d3e34f79aa0c6de190"
+    "_id":"629ee1a1ba5ae1dfc9936743"
 }
 
 ###
 
-GET http://localhost:3000/produto/incluir
+GET http://localhost:3000/produtos/incluir
 Content-Type: application/json
 
